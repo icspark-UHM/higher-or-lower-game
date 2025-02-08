@@ -1,200 +1,126 @@
 # Higher or Lower Game
 
-## Simple Website Tutorial
-
-Welcome to the Simple Website Tutorial! This guide will walk you through the steps to create a basic website using HTML, CSS, and JavaScript.
-
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Prerequisites](#prerequisites)
-- [Project Structure](#project-structure)
-- [Step-by-Step Guide](#step-by-step-guide)
-  - [1. Create the HTML File](#1-create-the-html-file)
-  - [2. Create the CSS File](#2-create-the-css-file)
-  - [3. Create the JavaScript File](#3-create-the-javascript-file)
-  - [4. Link the CSS and JavaScript Files](#4-link-the-css-and-javascript-files)
-  - [5. Adding the function to your JavaScript File](#5-adding-the-function-to-your-javascript-file)
-  - [6. Open the HTML File in a Browser](#5-open-the-html-file-in-a-browser)
-- [Things to Look Out For](#things-to-look-out-for)
-- [Conclusion](#conclusion)
-
 ## Introduction
 
 In this project, you will create a small game where a random number will be generated at the click of a button and you as the player will decide whether the next number will be higher or lower.
 
-## Project Structure
+![](demo/higherLower.gif)
 
-Create a project directory and set up the following file structure:
-```plaintext
-simple-website/
-├── index.html
-├── styles.css
-└── script.js
-```
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Step-by-Step Guide](#step-by-step-guide)
+  - [1. Take a look at the HTML](#1-take-a-look-at-the-html)
+  - [2. JavaScript](#2-javascript)
+  - [3. Higher Function](#3-higher-function)
+  - [4. Lower Function](#4-lower-function)
+  - [5. Center The Game With CSS](#5-center-the-game-with-css)
+- [Stretch Goals](#stretch-goals)
+- [Conclusion](#conclusion)
 
 ## Step-by-Step Guide
 
-### 1. Create the HTML File
+### 1. Take a look at the HTML
 
-Open your code editor and create a file named `index.html`. Add the following code:
+Open `index.html` in your code editor and preview it. It should look like this:
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Higher or Lower</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-  <h1>Higher or Lower</h1>
-  <div class="center">
-  <button type="button" onclick="generateRandom()">Get a random number! </button>
-  </div>
-  <p id="result"> </p>
-  <p>Will the next number be higher or lower?</p>
-  <div class = "center">
-  <button type="button" onclick="lower()"><< Lower</button>
-  <button type="button" onclick="higher()">Higher >></button>
-  </div>
-  <script src="script.js"></script>
-</body>
-</html>
+![preview](demo/noFlex.png)
+
+Our HTML has three buttons in it, which are how we'll make use of our JavaScript to play the game! Looking at the HTML, the three button elements are...
+
 ```
-### 2. Create the CSS File
-
-Create a file named `styles.css` and add the following code to style your webpage:
-
-```css
-body {
-    min-height: 100vh;
-    min-width: 100vw;
-    background-color: #12181f;
-    color:white;
-}
-
-h1 {
-    text-align: ;
-    font-weight: 700;
-    font-size: 50px;
-}
-
-p {
-    text-align: ;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-.center {
-    display: ;
-    justify-content: ;
-    align-items: ;
-    height: 50px;
-}
+<button type="button" onclick="generateRandom()">Get a random number! </button>
+...
+<button type="button" onclick="lower()"><< Lower</button>
+<button type="button" onclick="higher()">Higher >></button>
 ```
 
-> [!NOTE]
-> Let's refresh those flexbox skills that you learned last week. Notice that some parts of the codes are missing. Fill in the blank.
+Looking at the ```onclick``` property, pressing the "Get a random number!" button will activate the generateRandom() function in JavaScript. The other buttons will activate the higher() and lower() functions as well. Let's go check out our JavaScript to see what these functions do.
 
-### 3. Create the JavaScript File
+### 2. JavaScript
 
-Create a file named `script.js` 
+In our JavaScript, there are two bunches of code already in place for us. Let's break down what we have so far:
 
-### 4. Link the CSS and JavaScript Files
-
-Ensure that the CSS and JavaScript files are linked correctly in your `index.html` file. The `<link>` tag for CSS should be inside the `<head>` section, and the `<script>` tag for JavaScript should be just before the closing `</body>` tag.
-
-### 5. Adding the function to your JavaScript File
-
-1. Creating the Global Variables
-
-> [!TIP]
-> A global variable is a variable that can be accessed from anywhere in a program. Global variables are defined outside of functions, classes, etc.
-
-```js
+```
+// Global variables
 var resultParagraph = document.getElementById("result");
 var random;
-var range;
 var nextRandom = Math.floor(Math.random() * range + 1);
+var range = 100;
 ```
 
-- The range will be the range from 1 to the number that you set the range to be.
-  - Set the range to a number of your choice.
- 
-2. Creating the functions
+- ```resultParagraph``` is a variable that helps update our HTML page with the number, don't worry about this for now.
+- ```random``` is the current random number that the player sees.
+- ```nextRandom``` is the upcoming next random number that the player must guess.
+- ```range``` is the range of numbers the random number could be. The random number is between 0 and the range number.
 
-- In the HTML file, you will notice 3 different functions (generateRandom(), lower(), and higher())
-  - Create the generateRandom function 
-    - In that function put in the following code:
-    - ```js
-      random = nextRandom;
-      nextRandom = Math.floor(Math.random() * range + 1);
-      console.log(random);
-      resultParagraph.innerHTML = random;
-       ```
-  - Create the higher function
-    - In that function you will create an if statement.
-    - I want you to figure this one out.
-    - ```js
-       if (condition) {
-        // something happens
-       } else if (!sameNumber()) {
-         // something happens
-       }
+What about the functions below?
 
-      generateRandom();
-      ```
+```
+function generateRandom() {
+    random = nextRandom;
+    nextRandom = Math.floor(Math.random() * range + 1);
+    console.log(random);
+    resultParagraph.innerHTML = random;
+}
+```
+
+- This function moves the current random number to the next one, and generates a new random number for the ```nextRandom```. Running ```generateRandom()``` makes a new number to guess.
+- It also updates the number on the screen.
+
+```
+function higher() {
+
+}
+
+function lower() {
+
+}
+```
+
+Looks like it's up to us to program these in!
+
+### 3. Higher Function
+
+In a game of higher or lower, the player sees a number and needs to guess if the next random number will be higher or lower. The higher function should tell the player that they won if the ```nextRandom``` number is higher than the current ```random``` number. This calls for an ```if``` statement!
+
 > [!TIP]
-> The condition will use the variables "random", "nextRandom", and a comparison operator. Use window.alert to print out what happens after the conditions are met.
+> Take a look at this if statement block. Use this to compare the current ```random``` number and the ```nextRandom``` number.
+```
+if (10 > 20) {
+  window.alert("10 is bigger!");
+}
+else if (10 < 20) {
+  window.alert("20 is bigger!");
+}
+else {
+  window.alert("They are the same!");
+}
+```
 
-- Create the lower function
-  - This function will be similar to the higher function
-  - I want you to figure this one out.
-  - ```js
-    if (condition) {
-      // something happens
-    } else if (!sameNumber()) {
-      // something happens
-    }
+Once you've finished writing your higher function, test your game! If the window alerts don't show up in the side preview, try opening the preview in a new window and test it there.
 
-      generateRandom();
-    ```
-> [!TIP]
-> Again the condition will use the variables "random", "nextRandom", and a comparison operator, the comparison operator this time however will be different than the one you used in the higher function. Use window.alert to print out what happens after the conditions are met.
+At the end of your higher function, make sure to use ```generateRandom()``` to make a new number to keep the game fresh!
 
-- Create the sameNumber function
-  - This function will slightly differ from the other function.
-  - ```js
-    if (condition) {
-      // something happens
-      return true;
-    }
+### 4. Lower Function
 
-    return false;
-    ```
-> [!TIP]
-> Again the condition will use the variables "random", "nextRandom", and a comparison operator, the comparison operator this time however will be different than the one you used in the higher function. Use window.alert to print out what happens after the conditions are met.
+This button should be very similar to the higher button, except the player is guessing that the ```nextRandom``` number is lower instead. You'll want to use more ```if``` and ```else``` statements for this one too!
 
-### 6. Open the HTML File in a Browser
+Don't forget to call ```generateRandom()``` at the end of the function, or the player won't be able to get more numbers to play with!
 
-Open your `index.html` file in a web browser to see your simple website in action. You should see a styled heading, a paragraph, and a button that displays an alert when clicked.
 
-## Things to Look Out For
+### 5. Center The Game With CSS
 
-- Ensure the file paths in the `<link>` and `<script>` tags are correct.
-- Use proper HTML structure and semantics.
-- Keep your CSS organized and use meaningful class names.
-- Avoid inline styles and JavaScript as much as possible for better maintainability.
-- Test your website in different browsers to ensure compatibility.
+Check out the ```style.css``` file, it's already linked to the HTML but it's partially incomplete! Use what you know from Flexbox to center everything! When it's centered it should look like this:
+
+![center](demo/flex.png)
+
 
 ## Stretch Goals
-If you finish early, feel free to try out these additions to your website!
-- Make the buttons look nicer.
+- Make the alert say what the next number was, alongside if the player won or lost
+- Keep track of the player's score and show it either in the HTML or in the alerts.
+- Let the player change the range of the random numbers.
 
 ## Conclusion
 
-Congratulations! You've created a simple game using HTML, CSS, and JavaScript. This is just the beginning – there are many more features and technologies to explore. Keep learning and experimenting to build more complex and dynamic websites.
-
-Feel free to reach out if you have any questions or feedback. Happy coding!
+Congratulations! Your higher or lower game is complete!

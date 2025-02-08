@@ -4,6 +4,8 @@ var random;
 var range = 100;
 var nextRandom = Math.floor(Math.random() * range + 1);
 
+
+
 // Function to generate a random number
 function generateRandom() {
     random = nextRandom;
@@ -13,9 +15,32 @@ function generateRandom() {
 }
 
 // Function for the higher button
-
+function higher() {
+    if (random < nextRandom) {
+        window.alert("Higher! You win!");
+    }
+    else if (random > nextRandom) {
+        window.alert("Lower! You lose!");
+    }
+    else {
+        window.alert("It's the same number again!");
+    }
+    generateRandom();
+}
 
 // Function for the lower button
+function lower() {
+    if (random > nextRandom) {
+        window.alert("Lower! You win!");
+    }
+    else if (random < nextRandom) {
+        window.alert("Higher! You lose!");
+    }
+    else {
+        window.alert("It's the same number again!");
+    }
+    generateRandom();
+}
 
-
-// Function if the same number is generated in a row
+//Generate a number to start the game!
+generateRandom();
