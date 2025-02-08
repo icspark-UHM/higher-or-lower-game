@@ -4,7 +4,7 @@
 
 In this project, you will create a small game where a random number will be generated at the click of a button and you as the player will decide whether the next number will be higher or lower.
 
-![](demo/higherLower.gif)
+![](demo/higherLower2.gif)
 
 ## Table of Contents
 
